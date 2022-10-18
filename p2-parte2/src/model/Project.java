@@ -13,6 +13,14 @@ public class Project {
     private double valor_bolsa;
     private String periodo_bolsa;
 
+    public boolean find_user(String name) {
+        for (User user : userList) {
+            if (user.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
     public void relatorio() {
         System.out.println("Mostrando relatorio...");
         System.out.printf("id: %d\n", id);

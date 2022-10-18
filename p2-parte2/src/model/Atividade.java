@@ -7,23 +7,22 @@ public class Atividade{
     public String datainicio;
     public String datafinal;
     public User responsavel;
-    public ArrayList<User> userList;
+    public ArrayList<User> userList = new ArrayList<>();
     private String status;
 
+    public void add_user(User usuario){
+        this.userList.add(usuario);
+    }
     public Atividade(Integer id, String descricao, String datainicio, String datafinal, User responsavel,
-                     ArrayList<User> userList, String status) {
+                      String status, User user) {
         super();
         this.id = id;
         this.descricao = descricao;
         this.datainicio = datainicio;
         this.datafinal = datafinal;
         this.responsavel = responsavel;
-        this.userList = userList;
         this.status = status;
-    }
-
-    public void add_user(User usuario){
-        this.userList.add(usuario);
+        this.userList.add(user);
     }
     public void activity_users(){
         System.out.println("Lista de usuarios: ");
