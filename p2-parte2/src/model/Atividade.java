@@ -2,14 +2,21 @@ package model;
 
 import java.util.ArrayList;
 public class Atividade{
-    public Integer id;
-    public String descricao;
-    public String datainicio;
-    public String datafinal;
-    public User responsavel;
+    private Integer id;
+    private String descricao;
+    private String datainicio;
+    private String datafinal;
+    private User responsavel;
     public ArrayList<User> userList = new ArrayList<>();
     private String status;
-
+    public boolean find_user(String email) {
+        for (User user : userList) {
+            if (user.getEmail().equals(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
     public void add_user(User usuario){
         this.userList.add(usuario);
     }

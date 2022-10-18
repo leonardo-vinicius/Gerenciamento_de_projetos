@@ -111,7 +111,7 @@ public class Runner {
 
             if (input == 7) {
                 System.out.println("entrando no sistema...\n");
-                new App(userList);
+                new App(userList, section);
             }
         }
     }

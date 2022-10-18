@@ -7,10 +7,10 @@ public class App {
     public ArrayList<Project> listaProjetos = new ArrayList<>();
     public ArrayList<Atividade> listaAtividades = new ArrayList<>();
     public ArrayList<User> userList = new ArrayList<>();
+    public User current;
 
-    public User current = null;
-
-    public App(ArrayList<User> userList) {
+    public App(ArrayList<User> userList, User usuario) {
+        this.current = usuario;
         this.userList.addAll(userList);
         this.programa();
     }
@@ -167,7 +167,7 @@ public class App {
                 status = "Concluido";
             }
 
-            Project proj = new Project(status, id, descrition, databegin, dataend, bolsa, valor_bolsa, periodobolsa, null);
+            Project proj = new Project(status, id, descrition, databegin, dataend, bolsa, valor_bolsa, periodobolsa, current);
             listaProjetos.add(proj);
             System.out.println("Projeto adicionado com sucesso.");
         }
@@ -207,7 +207,7 @@ public class App {
                 break;
             }
 
-            Atividade atividade = new Atividade(ida, descritiona, datainicio, datafinal, coord, status, null);
+            Atividade atividade = new Atividade(ida, descritiona, datainicio, datafinal, coord, status, current);
             this.listaAtividades.add(atividade);
             System.out.println("Atividade adicionada com sucesso.");
         }
@@ -374,8 +374,7 @@ public class App {
         int procura = s.nextInt();
         for (Project projeto : this.listaProjetos) {
             if (projeto.getId().equals(procura)) {
-                System.out.print("Pagamento em andamento do projeto ");
-                System.out.println(projeto.getId());
+                System.out.printf("Pagamento em andamento do projeto %d\n", projeto.getId());
                 double salario_bolsa = projeto.getValor_bolsa();
                 for (User currentUser : this.userList) {
                     if (currentUser instanceof Aluno) {
@@ -420,6 +419,7 @@ public class App {
                             if (usuario.email.equals(p_email)) {
                                 i = 1;
                                 procurar.add_user(usuario);//adicionando nesse projeto esse usuario pelo e-mail dele
+                                System.out.println("User associado com sucesso.");
                                 todos_atributos = todos_atributos + 1;
                                 if (todos_atributos >= 2 && !procurar.getDescrition().equals("-1")) {
                                     status = "Em andamento";
@@ -455,6 +455,7 @@ public class App {
                         if (atividade.getId().equals(id_a)) {
                             i = 1;
                             procurar.add_atividade(atividade);
+                            System.out.println("Atividade associada com sucesso.");
                             todos_atributos = todos_atributos + 1;
                             if (todos_atributos >= 2 && !procurar.getDescrition().equals("-1")) {
                                 status = "Em andamento";
@@ -485,17 +486,11 @@ public class App {
                 if (procurar.getId().equals(id_a)) {
                     System.out.println("Digite o e-mail do usuario");
                     String email = s.next();
-
-                    for (User currentUser : this.userList) {
-                            System.out.println(currentUser.toString());
-                            System.out.print("\n");
-                        }
-
                     for (User usuario : this.userList) {
                         if (usuario instanceof Aluno) {
-                            if (usuario.getEmail().equals(email)) {
+                            if (usuario.getEmail().equals(email) && !procurar.find_user(email)) {
                                 procurar.add_user(usuario);
-                                System.out.println("usuario adicionado com sucesso.");
+                                System.out.println("User associado com sucesso.");
                                 i = 1;
                                 todos_atributos = todos_atributos + 1;
                                 if (todos_atributos >= 2 && !procurar.getDescricao().equals("-1")) {
