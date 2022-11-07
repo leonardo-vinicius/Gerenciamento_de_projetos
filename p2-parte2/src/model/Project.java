@@ -12,7 +12,6 @@ public class Project {
     private Integer bolsa;
     private double valor_bolsa;
     private String periodo_bolsa;
-
     public boolean find_user(String name) {
         for (User user : userList) {
             if (user.getName().equals(name)) {
@@ -33,14 +32,12 @@ public class Project {
         print_activity_projects();
         print_user_projects();
     }
-
     public void print_user_projects(){
         System.out.print("Lista de Usuarios:\n");
         for (User usuario: this.userList){
             System.out.print(usuario.getName() + "\n");
         }
     }
-
     public void add_user(User usuario){
         this.userList.add(usuario);
     }
@@ -67,62 +64,48 @@ public class Project {
         this.periodo_bolsa = periodobolsa;
         this.userList.add(user);
     }
-
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public String getDescrition() {
         return descrition;
     }
-
     public void setDescrition(String descrition) {
         this.descrition = descrition;
     }
-
     public String getDatabegin() {
         return databegin;
     }
-
     public void setDatabegin(String databegin) {
         this.databegin = databegin;
     }
-
     public String getDataend() {
         return dataend;
     }
-
     public void setDataend(String dataend) {
         this.dataend = dataend;
     }
-
     public Integer getBolsa() {
         return bolsa;
     }
-
     public void setBolsa(Integer bolsa) {
         this.bolsa = bolsa;
     }
-
     public String getPeriodo_bolsa() {
         return periodo_bolsa;
     }
-
     public void setPeriodobolsa(String periodobolsa) {
         this.periodo_bolsa = periodobolsa;
     }
     public void setStatus(String status) {
         this.status = status;
     }
-
     public double getValor_bolsa() {
         return valor_bolsa;
     }
-
     public void setValor_bolsa(double valor_bolsa) {
         this.valor_bolsa = valor_bolsa;
     }
