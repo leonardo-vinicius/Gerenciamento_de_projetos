@@ -1,15 +1,12 @@
 package app;
-
 import model.Admin;
 import model.Aluno;
 import model.User;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class Runner {
     private User section;
     private final ArrayList<User> userList = new ArrayList<>();
-
     public Runner() {
         this.userList.add(new Admin(1221, "leo", "a", "a", "coordenador"));
         this.userList.add(new Aluno(1221, "Nalanda", "b", "b", 2021));
