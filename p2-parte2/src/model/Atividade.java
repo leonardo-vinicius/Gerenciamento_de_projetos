@@ -33,60 +33,40 @@ public class Atividade{
     }
     public void activity_users(){
         System.out.println("Lista de usuarios: ");
-        if (userList == null){
-            System.out.println("sem participantes.");
-        }
-        else{
             for (User usuario: userList){
                 System.out.print(usuario.getName() + "\n");
             }
-        }
     }
-
     public void printar_coord(){
-        if(responsavel != null){
             System.out.print("Responsavel: " + responsavel.getName());
-        }
-        else{
-            System.out.print("sem responsavel no momento.");
-        }
     }
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
     public String getDatainicio() {
         return datainicio;
     }
-
     public void setDatainicio(String datainicio) {
         this.datainicio = datainicio;
     }
-
     public String getDatafinal() {
         return datafinal;
     }
-
     public void setDatafinal(String datafinal) {
         this.datafinal = datafinal;
     }
-
     public void setResponsavel(User responsavel) {
         this.responsavel = responsavel;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }
