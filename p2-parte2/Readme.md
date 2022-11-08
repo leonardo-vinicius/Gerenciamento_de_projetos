@@ -12,4 +12,4 @@
                 </div>
 
 <p>Pasta com a imagem de alguns exemplos</p>
-<img src="https://github.com/leonardo-vinicius/p2-parte2/blob/tratamento-de-erros/prints/">
+<a href="https://github.com/leonardo-vinicius/p2-parte2/blob/tratamento-de-erros/prints/">Exemplo</a>
