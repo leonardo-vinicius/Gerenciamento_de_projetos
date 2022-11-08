@@ -10,3 +10,6 @@
               <div> que evitam duplicações de código e procuram se tal atividade ou tal projeto existem, pouparam umas 100 linhas</div>
                  de código e deixaram o programa mais limpo e mais visivel. E outros pequenos detalhes que contribuiram  para tornar o código mais limpo.
                 </div>
+
+<p>Pasta com a imagem de alguns exemplos</p>
+<img src="https://github.com/leonardo-vinicius/p2-parte2/blob/tratamento-de-erros/prints/">
