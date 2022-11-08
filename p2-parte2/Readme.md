@@ -11,6 +11,6 @@
                  de código e deixaram o programa mais limpo e mais visivel. E outros pequenos detalhes que contribuiram  para tornar o código mais limpo.
                 </div>
 
-<p>Pasta com a imagem de alguns exemplos:
+<div><p>Pasta com a imagem de alguns exemplos:
 <a href="https://github.com/leonardo-vinicius/p2-parte2/blob/tratamento-de-erros/prints/">Pasta com imagens</a>
-</p>
+</div>
