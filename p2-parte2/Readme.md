@@ -4,13 +4,16 @@
   <div> O programa teve as seguintes alterações e/ou tratamento de erros:
     <div><p> tratamento de NumberFormatException com a criação de uma função process( )</div>
       <div> na função app/App que só continua quando o usuário digita corretamente o que foi pedido. (um número inteiro)</div>
+      <div><p>Foram removidos alguns códigos mortos por exemplo haviam trechos de código que checavam se coordenador está vazio
+Ou se a lista de alunos/atividades/projetos está vazia. Como o Nullpointexception foi tratado esses código não se fizeram mais necessários.
+</div>
+      <div>Não há existência de classe de dados(classe apenas com getters e setters)</div>
         <p><div> o tratamento de NullPointException foi tratado com um current user que é passado ao criar Atividade/Projeto</div>
     <div><p>como coordenador e próprio membro do projeto, com isso as listas nunca estarão vazias.</p></div>
             <p><div> Os code smells foram tratados com funções como a em app/App procuraratividade() e procurarprojeto()</div>
               <div> que evitam duplicações de código e procuram se tal atividade ou tal projeto existem, pouparam umas 100 linhas</div>
                  de código e deixaram o programa mais limpo e mais visivel. E outros pequenos detalhes que contribuiram  para tornar o código mais limpo.
                 </div>
-
 <div><p>Pasta com a imagem de alguns exemplos:(lá tem um arquivo markdown explicando as imagens)
 <a href="https://github.com/leonardo-vinicius/p2-parte2/blob/tratamento-de-erros/prints/">Pasta com imagens</a>
 </div>
