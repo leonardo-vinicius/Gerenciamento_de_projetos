@@ -4,11 +4,7 @@ import java.util.*;
 public class Project {
     public ArrayList<User> userList = new ArrayList<>();
     public ArrayList<Atividade> listaAtividades = new ArrayList<>();
-    private String status;
-    private Integer id;
-    private String descrition;
-    private String databegin;
-    private String dataend;
+    public Dados dados;
     private Integer bolsa;
     private double valor_bolsa;
     private String periodo_bolsa;
@@ -22,12 +18,7 @@ public class Project {
     }
     public void relatorio() {
 
-        System.out.printf("id: %d\n", id);
-        System.out.printf("descricao: %s\n", descrition);
-        System.out.printf("Data de inicio do projeto: %s\n", databegin);
-        System.out.printf("Data de término do projeto: %s\n", dataend);
-        System.out.printf("período da bolsa: %s\n", periodo_bolsa);
-
+        dados.DadosRelatorio();
         print_activity_projects();
         print_user_projects();
     }
@@ -44,48 +35,23 @@ public class Project {
     public void print_activity_projects(){
         System.out.println("Lista de Atividades:");
         for (Atividade atividade: this.listaAtividades){
-            System.out.print(atividade.getDescricao() + "\n");
+            System.out.print(atividade.dados.getDescricao() + "\n");
         }
     }
     public void add_atividade(Atividade atividade){
         this.listaAtividades.add(atividade);
     }
-    public Project(String status, Integer id, String descrition, String databegin, String dataend,
+    public Project(Dados dados,
                     Integer bolsa, Double valor_bolsa, String periodobolsa, User user) {
         super();
-        this.setStatus(status);
-        this.id = id;
-        this.descrition = descrition;
-        this.databegin = databegin;
-        this.dataend = dataend;
+        this.dados = dados;
         this.bolsa = bolsa;
         this.valor_bolsa = valor_bolsa;
         this.periodo_bolsa = periodobolsa;
         this.userList.add(user);
     }
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getDescrition() {
-        return descrition;
-    }
-    public void setDescrition(String descrition) {
-        this.descrition = descrition;
-    }
-    public String getDatabegin() {
-        return databegin;
-    }
-    public void setDatabegin(String databegin) {
-        this.databegin = databegin;
-    }
-    public String getDataend() {
-        return dataend;
-    }
-    public void setDataend(String dataend) {
-        this.dataend = dataend;
+    public void setDados(Integer id, String descricao, String datainicio, String datafinal, String status) {
+        this.dados = new Dados(id, descricao, datainicio, datafinal, status);
     }
     public Integer getBolsa() {
         return bolsa;
@@ -98,10 +64,6 @@ public class Project {
     }
     public void setPeriodobolsa(String periodobolsa) {
         this.periodo_bolsa = periodobolsa;
-    }
-    public String getStatus() {return status;}
-    public void setStatus(String status) {
-        this.status = status;
     }
     public double getValor_bolsa() {
         return valor_bolsa;

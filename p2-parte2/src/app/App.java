@@ -16,10 +16,14 @@ public class App {
         Integer todosatributosp = 0;
         Integer todosatributosa = 0;
         String status = "Em processo de criacao";
+        Dados dados1 = new Dados(14, "projeto1", "14/08/1999", "15/10/2020", "concluido");
+        this.listaProjetos.add(new Project(dados1, 1, 1.200, "15/10/2022", userList.get(0)));
+        this.listaAtividades.add(new Atividade(dados1, current, userList.get(0)));
+        /*this.listaProjetos.add(new Project("concluido", (new Dados(14, "projeto1", "14/08/1999", "15/10/2020", "concluido")),13 )
         this.listaProjetos.add(new Project("concluido", 14, "projeto1", "14/08/1999", "15/10/2020", 1, 1.200, "12/02/2022", userList.get(0)));
         this.listaAtividades.add(new Atividade(16, "atividade1", "21/01/2021", "22/02/2022", current, status, userList.get(0)));
         this.listaAtividades.add(new Atividade(15, "atividade1", "21/01/2021", "22/02/2022", current,  status, userList.get(0)));
-
+        */
         int n = 0;
         while (n != -1) {
             System.out.println("""
@@ -132,7 +136,8 @@ public class App {
                 status = "Concluido";
             }
 
-            Project proj = new Project(status, id, descrition, databegin, dataend, bolsa, valor_bolsa, periodobolsa, current);
+            Dados dados = new Dados(id, descrition, databegin, dataend, status);
+            Project proj = new Project(dados, bolsa, valor_bolsa, periodobolsa, current);
             listaProjetos.add(proj);
             System.out.println("Projeto adicionado com sucesso.");
         }
@@ -160,7 +165,8 @@ public class App {
                 status = "Concluido";
             }
 
-            Atividade atividade = new Atividade(ida, descritiona, datainicio, datafinal, current, status, current);
+            Dados dados = new Dados(ida, descritiona, datainicio, datafinal, status);
+            Atividade atividade = new Atividade(dados, current, current);
             this.listaAtividades.add(atividade);
             System.out.println("Atividade adicionada com sucesso.");
         }
@@ -173,19 +179,19 @@ public class App {
         if (atividadeatual != null) {
             System.out.println("Digite o id:\n");
             int novoid = process();
-            atividadeatual.setId(novoid);
+            atividadeatual.dados.setId(novoid);
             String novadescricao;
             System.out.println("Digite descricao:\n");
             novadescricao = s.next();
-            atividadeatual.setDescricao(novadescricao);
+            atividadeatual.dados.setDescricao(novadescricao);
             String novadatainicio;
             System.out.println("Digite data de inicio:\n");
             novadatainicio = s.next();
-            atividadeatual.setDatainicio(novadatainicio);
+            atividadeatual.dados.setDatainicio(novadatainicio);
             String novadatafinal;
             System.out.println("Digite data final:\n"); // dps pega essa data final só com numero e se ela for antes da data de hoje então status encerrado
             novadatafinal = s.next();
-            atividadeatual.setDatafinal(novadatafinal);
+            atividadeatual.dados.setDatafinal(novadatafinal);
             User coord = current;
             atividadeatual.setResponsavel(coord);
             System.out.println("Atividade atualizada com sucesso.");
@@ -197,18 +203,18 @@ public class App {
         int idprojeto = process();
         Project projetoatual = procurarprojeto(idprojeto);
         if (projetoatual != null) {
-            System.out.println("Id do projeto: ");
+            System.out.println("Id: ");
             Integer id = process();
-            projetoatual.setId(id);
-            System.out.println("Descricao do projeto:");
+            projetoatual.dados.setId(id);
+            System.out.println("Descricao:");
             String descrition = s.next();
-            projetoatual.setDescrition(descrition);
-            System.out.println("Data de inicio: ");
+            projetoatual.dados.setDescricao(descrition);
+            System.out.println("Data de inicio:");
             String databegin = s.next();
-            projetoatual.setDatabegin(databegin);
-            System.out.println("Data de termino: ");
+            projetoatual.dados.setDatainicio(databegin);
+            System.out.println("Data de termino:");
             String dataend = s.next();
-            projetoatual.setDataend(dataend);
+            projetoatual.dados.setDatafinal(dataend);
             System.out.println("Valor da bolsa ");
             Integer bolsa = process();
             projetoatual.setBolsa(bolsa);
@@ -259,7 +265,7 @@ public class App {
         int procura = process();
         Project projeto = procurarprojeto(procura);
         if(projeto != null){
-            System.out.printf("Pagamento em andamento do projeto %d\n", projeto.getId());
+            System.out.printf("Pagamento em andamento do projeto %d\n", projeto.dados.getId());
             double salario_bolsa = projeto.getValor_bolsa();
             for (User currentUser : this.userList) {
                 if (currentUser instanceof Aluno) { // se não tiver aluno talvez de um erro checar.
@@ -276,7 +282,7 @@ public class App {
     public void relatorio() {
         for (Project projeto : this.listaProjetos) {
             System.out.println("Mostrando relatorio...");
-            System.out.printf("status: %s\n", projeto.getStatus());
+            System.out.printf("status: %s\n", projeto.dados.getStatus());
             projeto.relatorio();
         }
     }
@@ -296,9 +302,9 @@ public class App {
                             procurar.add_user(usuario);//adicionando nesse projeto esse usuario pelo e-mail dele
                             System.out.println("User associado com sucesso.");
                             todos_atributos = todos_atributos + 1;
-                            if (todos_atributos >= 2 && !procurar.getDescrition().equals("-1"))
+                            if (todos_atributos >= 2 && !procurar.dados.getDescricao().equals("-1"))
                             {   status = "Em andamento";
-                                procurar.setStatus(status);
+                                procurar.dados.setStatus(status);
                             }
                         }
                     }
@@ -315,14 +321,14 @@ public class App {
             System.out.println("Digite o id da atividade:");
             int id_a = process();
             for (Atividade atividade : this.listaAtividades) {
-                if (atividade.getId().equals(id_a)) {
+                if (atividade.dados.getId().equals(id_a)) {
                     i = 1;
                     procurar.add_atividade(atividade);
                     System.out.println("Atividade associada com sucesso.");
                     todos_atributos = todos_atributos + 1;
-                    if (todos_atributos >= 2 && !procurar.getDescrition().equals("-1")) {
+                    if (todos_atributos >= 2 && !procurar.dados.getDescricao().equals("-1")) {
                         status = "Em andamento";
-                        procurar.setStatus(status);
+                        procurar.dados.setStatus(status);
                     }
                 }
             }
@@ -345,9 +351,9 @@ public class App {
                         System.out.println("User associado com sucesso.");
                         i = 1;
                         todos_atributos = todos_atributos + 1;
-                        if (todos_atributos >= 2 && !procurar.getDescricao().equals("-1")) {
+                        if (todos_atributos >= 2 && !procurar.dados.getDescricao().equals("-1")) {
                             status = "Em andamento";
-                            procurar.setStatus(status);
+                            procurar.dados.setStatus(status);
                         }
                     }
                 }
@@ -400,7 +406,7 @@ public class App {
     }
     public Atividade procuratividade(int id){
         for (Atividade atividade : this.listaAtividades) {
-            if (atividade.getId().equals(id)) {
+            if (atividade.dados.getId().equals(id)) {
                 return atividade;
             }
         }
@@ -410,7 +416,7 @@ public class App {
     public Project procurarprojeto(int id){
         System.out.println("procurando...");
         for (Project projeto : this.listaProjetos) {
-            if (projeto.getId().equals(id)) {
+            if (projeto.dados.getId().equals(id)) {
                 return projeto;
             }
         }
