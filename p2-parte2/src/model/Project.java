@@ -21,10 +21,9 @@ public class Project {
         return false;
     }
     public void relatorio() {
-        System.out.println("Mostrando relatorio...");
+
         System.out.printf("id: %d\n", id);
         System.out.printf("descricao: %s\n", descrition);
-        System.out.printf("status: %s\n", status);
         System.out.printf("Data de inicio do projeto: %s\n", databegin);
         System.out.printf("Data de término do projeto: %s\n", dataend);
         System.out.printf("período da bolsa: %s\n", periodo_bolsa);
@@ -100,6 +99,7 @@ public class Project {
     public void setPeriodobolsa(String periodobolsa) {
         this.periodo_bolsa = periodobolsa;
     }
+    public String getStatus() {return status;}
     public void setStatus(String status) {
         this.status = status;
     }

@@ -254,12 +254,7 @@ public class App {
         int procura = process();
         Project projeto = procurarprojeto(procura);
         if(projeto != null){
-                System.out.println("Projeto(id)" + projeto.getId() + "\nDescricao: " + projeto.getDescrition() + "\nInicio" + projeto.getDatabegin() + "\nfinal:" +
-                        projeto.getDataend() + "\nBolsa tipo:" + projeto.getBolsa() + "\nValor da bolsa:" + projeto.getValor_bolsa() +
-                        "\nperiodo:" + projeto.getPeriodo_bolsa() + "\n");
-                projeto.print_user_projects();
-                projeto.print_activity_projects();
-                System.out.print("\n");
+                projeto.relatorio();
             }
     }
     public void pagar() {
@@ -283,6 +278,8 @@ public class App {
     }
     public void relatorio() {
         for (Project projeto : this.listaProjetos) {
+            System.out.println("Mostrando relatorio...");
+            System.out.printf("status: %s\n", projeto.getStatus());
             projeto.relatorio();
         }
     }
