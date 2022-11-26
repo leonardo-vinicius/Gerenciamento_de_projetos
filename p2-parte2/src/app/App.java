@@ -243,10 +243,7 @@ public class App {
         int procura = process();
         Atividade atividade = procuratividade(procura);
         if(atividade != null){
-            System.out.print("Atividade(id): " + atividade.getId() + "\nDescricao: " + atividade.getDescricao()
-                    + "\nData inicio: " + atividade.getDatainicio() + "\nData final: " + atividade.getDatafinal());
-             atividade.printar_coord();
-             atividade.activity_users();
+            atividade.relatorio();
         }
     }
     public void consultarprojeto() {

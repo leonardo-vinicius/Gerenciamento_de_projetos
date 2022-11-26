@@ -9,6 +9,16 @@ public class Atividade{
     private User responsavel;
     public ArrayList<User> userList = new ArrayList<>();
     private String status;
+
+    public void relatorio(){
+        System.out.printf("id: %d\n", id);
+        System.out.printf("descricao: %s\n", descricao);
+        System.out.printf("Data de inicio da atividade: %s\n", datainicio);
+        System.out.printf("Data de término da atividade: %s\n", datafinal);
+
+        printar_coord();
+        activity_users();
+    }
     public boolean find_user(String email) {
         for (User user : userList) {
             if (user.getEmail().equals(email)) {
@@ -38,7 +48,7 @@ public class Atividade{
             }
     }
     public void printar_coord(){
-            System.out.print("Responsavel: " + responsavel.getName());
+            System.out.println("Responsavel: " + responsavel.getName());
     }
     public Integer getId() {
         return id;
