@@ -2,12 +2,25 @@ package model;
 import java.util.*;
 
 public class Project {
+    // Atributos
     public ArrayList<User> userList = new ArrayList<>();
     public ArrayList<Atividade> listaAtividades = new ArrayList<>();
     public Dados dados;
     private Integer bolsa;
     private double valor_bolsa;
     private String periodo_bolsa;
+
+    // Construtor
+    public Project(Dados dados,
+                   Integer bolsa, Double valor_bolsa, String periodobolsa, User user) {
+        super();
+        this.dados = dados;
+        this.bolsa = bolsa;
+        this.valor_bolsa = valor_bolsa;
+        this.periodo_bolsa = periodobolsa;
+        this.userList.add(user);
+    }
+    // Getters, Setters e outras funcoes
     public boolean find_user(String name) {
         for (User user : userList) {
             if (user.getName().equals(name)) {
@@ -40,15 +53,6 @@ public class Project {
     }
     public void add_atividade(Atividade atividade){
         this.listaAtividades.add(atividade);
-    }
-    public Project(Dados dados,
-                    Integer bolsa, Double valor_bolsa, String periodobolsa, User user) {
-        super();
-        this.dados = dados;
-        this.bolsa = bolsa;
-        this.valor_bolsa = valor_bolsa;
-        this.periodo_bolsa = periodobolsa;
-        this.userList.add(user);
     }
     public void setDados(Integer id, String descricao, String datainicio, String datafinal, String status) {
         this.dados = new Dados(id, descricao, datainicio, datafinal, status);
