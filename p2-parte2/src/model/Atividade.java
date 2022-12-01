@@ -7,7 +7,7 @@ public class Atividade{
     private User responsavel;
     public ArrayList<User> userList = new ArrayList<>();
     // Construtor
-    private Atividade(Dados dados, User responsavel, User user) {
+    public Atividade(Dados dados, User responsavel, User user) {
         super();
         this.dados = dados;
         this.responsavel = responsavel;
