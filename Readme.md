@@ -28,9 +28,8 @@ Aconteceu algo parecido para o método alterar para as classes Aluno e Admin que
 <div> <b> Builder </b>  </div>
 Para resolver a problemática de uma classe adicionada no meio do projeto e com os atributos em lugares os quais não
 dá para saber o que tem nessa classe e em qual lugar está, por exemplo: classe "Pessoa("Leo", "Vinicius", "20")", não
-dá para saber o que significam essas Strings e com o método Builder fica tudo mais visível para quem está mexendo no
-código, ficaria algo como classe "Pessoa.PessoaBuilder().nome("Leo").sobrenome("Vinicius").idade(20).CreatePessoa()".
-Bem mais visível e fácil de se trabalhar.
+dá para saber o que significam essas Strings e com o método Builder fica tudo mais visível para quem está mexendo no código,
+ficaria algo como classe "Pessoa.PessoaBuilder().nome("Leo").sobrenome("Vinicius").idade(20).CreatePessoa()". Bem mais visível e fácil de se trabalhar.
 
 <p> </p>
 <div> <b> SOLID(Single Responsibility Principle) </b>  </div>
@@ -41,6 +40,7 @@ de cada classe, em que uma não se sobressaia com métodos mais gerais quando n�
 Carro com um método trocarRoda(), mas não é apenas carro que se troca roda, este método deveria ser implementado pela
 classe mãe automóvel por exemplo.
 
+<p> </p>
 <div><p>Pasta com a imagem de alguns exemplos e para ver as mudanças estabelecidas:
 <a href="https://github.com/leonardo-vinicius/p2-parte2/tree/padrao_de_projeto/prints">Pasta com imagens</a>
 </div>
