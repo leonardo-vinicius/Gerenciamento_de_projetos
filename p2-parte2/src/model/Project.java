@@ -1,7 +1,7 @@
 package model;
 import java.util.*;
 
-public class Project {
+public class Project{
     // Atributos
     public ArrayList<User> userList = new ArrayList<>();
     public ArrayList<Atividade> listaAtividades = new ArrayList<>();
@@ -23,7 +23,7 @@ public class Project {
     // Getters, Setters e outras funcoes
     public boolean find_user(String name) {
         for (User user : userList) {
-            if (user.getName().equals(name)) {
+            if (user.pessoa.name.equals(name)) {
                 return true;
             }
         }
@@ -38,7 +38,7 @@ public class Project {
     public void print_user_projects(){
         System.out.print("Lista de Usuarios:\n");
         for (User usuario: this.userList){
-            System.out.print(usuario.getName() + "\n");
+            System.out.print(usuario.pessoa.name + "\n");
         }
     }
     public void add_user(User usuario){
@@ -75,5 +75,4 @@ public class Project {
     public void setValor_bolsa(double valor_bolsa) {
         this.valor_bolsa = valor_bolsa;
     }
-
 }

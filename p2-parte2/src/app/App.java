@@ -264,11 +264,11 @@ public class App {
             double salario_bolsa = projeto.getValor_bolsa();
             for (User currentUser : this.userList) {
                 if (currentUser instanceof Aluno) { // se não tiver aluno talvez de um erro checar.
-                    ((Aluno) currentUser).recebe_salario(salario_bolsa, currentUser.getName());
+                    ((Aluno) currentUser).recebe_salario(salario_bolsa, currentUser.pessoa.name);
                     ((Aluno) currentUser).recebe_salario(salario_bolsa);
                 }
                 if (currentUser instanceof Admin) {
-                    ((Admin) currentUser).recebe_salario(salario_bolsa, currentUser.getName());
+                    ((Admin) currentUser).recebe_salario(salario_bolsa, currentUser.pessoa.name);
                     ((Admin) currentUser).recebe_salario(salario_bolsa);
                 }
             }
@@ -292,10 +292,10 @@ public class App {
                 String p_email = s.next();
                 for (User usuario : this.userList) {
                     if (usuario instanceof Aluno) {
-                        if (usuario.email.equals(p_email)) {
+                        if (usuario.pessoa.email.equals(p_email)) {
                             i = 1;
                             procurar.add_user(usuario);//adicionando nesse projeto esse usuario pelo e-mail dele
-                            System.out.printf("%s associado com sucesso.\n", usuario.getName());
+                            System.out.printf("%s associado com sucesso.\n", usuario.pessoa.name);
                             todos_atributos = todos_atributos + 1;
                             if (todos_atributos >= 2 && !procurar.dados.getDescricao().equals("-1"))
                             {   status = "Em andamento";
@@ -341,9 +341,9 @@ public class App {
             String email = s.next();
             for (User usuario : this.userList) {
                 if (usuario instanceof Aluno) {
-                    if (usuario.getEmail().equals(email) && !procurar.find_user(email)) {
+                    if (usuario.pessoa.email.equals(email) && !procurar.find_user(email)) {
                         procurar.add_user(usuario);
-                        System.out.printf("%s associado com sucesso.\n", usuario.getName());
+                        System.out.printf("%s associado com sucesso.\n", usuario.pessoa.name);
                         i = 1;
                         todos_atributos = todos_atributos + 1;
                         if (todos_atributos >= 2 && !procurar.dados.getDescricao().equals("-1")) {
@@ -364,7 +364,7 @@ public class App {
         String user = s.next();
         for (User usuario : userList) {
             if (usuario instanceof Aluno) {
-                if (usuario.getName().equals(user)) {
+                if (usuario.pessoa.name.equals(user)) {
                     for(Project projeto: listaProjetos){
                         if(projeto.find_user(user)){
                             System.out.print("o usuario pertence a um projeto.\nQual atividade vai ser feito o intercambio?\n");
@@ -386,7 +386,7 @@ public class App {
     public void listaaluno(){
         for (User usuario : this.userList) {
             if (usuario instanceof Aluno) {
-                System.out.println("Aluno(a):" + usuario.getName() + "e-mail:" + usuario.getEmail());
+                System.out.println("Aluno(a):" + usuario.pessoa.name + "e-mail:" + usuario.pessoa.email);
             }
         }
     }

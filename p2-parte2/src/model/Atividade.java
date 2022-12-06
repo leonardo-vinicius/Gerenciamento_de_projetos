@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-public class Atividade{
+public class Atividade {
     // Atributos
     public Dados dados;
     private User responsavel;
@@ -22,7 +22,7 @@ public class Atividade{
     }
     public boolean find_user(String email) {
         for (User user : userList) {
-            if (user.getEmail().equals(email)) {
+            if (user.pessoa.email.equals(email)) {
                 return true;
             }
         }
@@ -34,14 +34,13 @@ public class Atividade{
     public void activity_users(){
         System.out.println("Lista de usuarios: ");
         for (User usuario: userList){
-            System.out.print(usuario.getName() + "\n");
+            System.out.print(usuario.pessoa.name + "\n");
         }
     }
     public void printar_coord(){
-        System.out.println("Responsavel: " + responsavel.getName());
+        System.out.println("Responsavel: " + responsavel.pessoa.name);
     }
     public void setResponsavel(User responsavel) {
         this.responsavel = responsavel;
     }
-
 }

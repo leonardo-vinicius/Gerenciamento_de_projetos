@@ -1,6 +1,7 @@
 package app;
 import model.Admin;
 import model.Aluno;
+import model.Pessoa;
 import model.User;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,10 +9,20 @@ public class Runner {
     private User section;
     private final ArrayList<User> userList = new ArrayList<>();
     public Runner() {
-        this.userList.add(new Admin(1221, "leo", "a", "a", "coordenador"));
-        this.userList.add(new Aluno(1221, "Nalanda", "b", "b", 2021));
+        // Usuarios ja registrados
+        Pessoa dadosLeo = new Pessoa.PessoaBuilder().name("leo").email("a").password("a").salario(1200).CreatePessoa();
+        Pessoa dadosNa = new Pessoa.PessoaBuilder().name("Nalanda").email("b").password("b").salario(1200).CreatePessoa();
+        Pessoa dadosYago = new Pessoa.PessoaBuilder().name("Yago").email("y").password("y").salario(3200).CreatePessoa();
+        Admin yago = new Admin.AdminBuilder().pessoa(dadosYago).cargo("Monitor").CreateAdmin();
+        Admin leo = new Admin.AdminBuilder().pessoa(dadosLeo).cargo("responsavel").CreateAdmin();
+        Aluno na = new Aluno.AlunoBuilder().pessoa(dadosNa).matricula(20211751).CreateAluno();
 
+        this.userList.add(leo);
+        this.userList.add(na);
+        this.userList.add(yago);
+        // Fim dos usuarios ja registrados
         Scanner scan = new Scanner(System.in);
+
         boolean isRunning = true;
         while (isRunning) {
             if (this.section == null) {
@@ -43,18 +54,18 @@ public class Runner {
                 System.out.println("Digite\n1- para ADMIN\n2- para ALUNO");
                 int ruleDigit = scan.nextInt();
                 String cash = scan.nextLine();
-
+                Pessoa pessoa = new Pessoa(0, name, email, password);
                 if (ruleDigit == 1) {
                     System.out.println("Qual o seu cargo?\n(ex: coordenador, pesquisador, doutorando, pós-graduando...)");
                     String cargo = scan.next();
-                    User usuario = new Admin( 0, name, email, password, cargo);
+                    User usuario = new Admin( pessoa, cargo);
                     this.userList.add(usuario);
                 }
 
                 if (ruleDigit == 2) {
                     System.out.println("Digite seu n° de matricula: \n");
                     int num_matricula = scan.nextInt();
-                    User usuario = new Aluno( 0, name, email, password, num_matricula);
+                    User usuario = new Aluno( pessoa, num_matricula);
                     this.userList.add(usuario);
                 }
             }
@@ -63,10 +74,10 @@ public class Runner {
                 System.out.println("Digite seu email");
                 String email = scan.nextLine();
                 for (User currentUser : this.userList) {
-                    if (currentUser.email.equals(email)) {
+                    if (currentUser.pessoa.email.equals(email)) {
                         System.out.println("Digite sua nova senha");
                         String newpassword = scan.nextLine();
-                        currentUser.setPassword(newpassword);
+                        currentUser.pessoa.setPassword(newpassword);
                         this.login(scan);
                     }
                 }
@@ -79,8 +90,8 @@ public class Runner {
                 if(currentUser != null){
                     System.out.println("Send your password");
                     String password = scan.nextLine();
-                    if (currentUser.password.equals(password)) {
-                        System.out.println("Usuario " + currentUser.getName() +" removido com sucesso.");
+                    if (currentUser.pessoa.password.equals(password)) {
+                        System.out.println("Usuario " + currentUser.pessoa.name +" removido com sucesso.");
                         userList.remove(currentUser);
                     } else {
                         System.out.println("Senha nao confere\n");
@@ -94,7 +105,7 @@ public class Runner {
                 User atual = procurauser(email);
                 if(atual != null){
                     System.out.println("Alterando dados\n");
-                    atual.alterar();
+                    //atual.alterar();
                 }
             }
 //--------------------------------------- consultando--------------------------------------------------------------------
@@ -117,8 +128,8 @@ public class Runner {
         System.out.println("Send your password");
         String password = scan.nextLine();
         for (User currentUser : this.userList) {
-            if (currentUser.email.equals(email)) {
-                if (currentUser.password.equals(password)){
+            if (currentUser.pessoa.email.equals(email)) {
+                if (currentUser.pessoa.password.equals(password)){
                     this.section = currentUser;
                 } else {
                     System.out.println("Senha nao confere\n");
@@ -129,13 +140,13 @@ public class Runner {
         if (this.section == null) {
             System.out.println("Usuário nao encontrado.\ntente recuperar senha.\n");
         } else {
-            System.out.println("Usuario " + this.section.name + " Logado");
+            System.out.println("Usuario " + this.section.pessoa.name + " Logado");
         }
     }
     User procurauser(String email){
         System.out.println("procurando...");
         for (User currentUser : this.userList){
-            if (currentUser.email.equals(email)) {
+            if (currentUser.pessoa.email.equals(email)) {
                 this.section = currentUser;
                 return this.section;
             }
