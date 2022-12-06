@@ -2,19 +2,15 @@ package model;
 
 import java.util.ArrayList;
 public class Atividade {
-    // Atributos
     public Dados dados;
     private User responsavel;
     public ArrayList<User> userList = new ArrayList<>();
-    // Construtor
     public Atividade(Dados dados, User responsavel, User user) {
         super();
         this.dados = dados;
         this.responsavel = responsavel;
         this.userList.add(user);
     }
-
-    // Getters, Setters e outras funcoes
     public void relatorio(){
         dados.DadosRelatorio();
         printar_coord();
@@ -34,11 +30,12 @@ public class Atividade {
     public void activity_users(){
         System.out.println("Lista de usuarios: ");
         for (User usuario: userList){
-            System.out.print(usuario.pessoa.name + "\n");
+            usuario.pessoa.printarName();
         }
     }
     public void printar_coord(){
-        System.out.println("Responsavel: " + responsavel.pessoa.name);
+        System.out.print("Responsavel: ");
+        responsavel.pessoa.printarName();
     }
     public void setResponsavel(User responsavel) {
         this.responsavel = responsavel;

@@ -84,11 +84,11 @@ public class Runner {
             }
 //---------------------------------------removendo usuario----------------------------------------------------------------
             if(input == 4) {
-                System.out.println("Send your email");
+                System.out.println("Digite seu e-mail");
                 String email = scan.nextLine();
                 User currentUser = procurauser(email);
                 if(currentUser != null){
-                    System.out.println("Send your password");
+                    System.out.println("Digite sua senha");
                     String password = scan.nextLine();
                     if (currentUser.pessoa.password.equals(password)) {
                         System.out.println("Usuario " + currentUser.pessoa.name +" removido com sucesso.");
@@ -105,7 +105,7 @@ public class Runner {
                 User atual = procurauser(email);
                 if(atual != null){
                     System.out.println("Alterando dados\n");
-                    //atual.alterar();
+                    atual.pessoa.alterar();
                 }
             }
 //--------------------------------------- consultando--------------------------------------------------------------------
@@ -123,9 +123,9 @@ public class Runner {
         }
     }
     private void login(Scanner scan) { //
-        System.out.println("Send your email");
+        System.out.println("Digite seu e-mail");
         String email = scan.nextLine();
-        System.out.println("Send your password");
+        System.out.println("Digite sua senha");
         String password = scan.nextLine();
         for (User currentUser : this.userList) {
             if (currentUser.pessoa.email.equals(email)) {

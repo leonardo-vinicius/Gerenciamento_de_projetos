@@ -6,7 +6,6 @@ public class Dados {
     private String datainicio;
     private String datafinal;
     private String status;
-
     public Dados(Integer id, String descricao, String datainicio, String datafinal, String status) {
         this.id = id;
         this.descricao = descricao;
@@ -14,7 +13,6 @@ public class Dados {
         this.datafinal = datafinal;
         this.status = status;
     }
-
     public void DadosRelatorio(){
         System.out.printf("id: %d\n", id);
         System.out.printf("descricao: %s\n", descricao);
@@ -24,39 +22,30 @@ public class Dados {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
     public String getDatainicio() {
         return datainicio;
     }
-
     public void setDatainicio(String datainicio) {
         this.datainicio = datainicio;
     }
-
     public String getDatafinal() {
         return datafinal;
     }
-
     public void setDatafinal(String datafinal) {
         this.datafinal = datafinal;
     }
-
     public String getStatus() {
         return status;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }

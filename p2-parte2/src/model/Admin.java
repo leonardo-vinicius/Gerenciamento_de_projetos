@@ -1,9 +1,7 @@
 package model;
-import view.Payments;
-
+import view.Employee;
 import java.util.Scanner;
-
-public class Admin extends User implements Payments {
+public class Admin extends User implements Employee {
     public Pessoa pessoa;
     public String cargo;
     public Admin(Pessoa pessoa, String cargo) {

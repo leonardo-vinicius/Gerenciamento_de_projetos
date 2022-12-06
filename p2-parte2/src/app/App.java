@@ -3,7 +3,7 @@ import java.util.*;
 import model.*;
 public class App {
     Scanner s = new Scanner(System.in);
-    public ArrayList<Project> listaProjetos = new ArrayList<>();
+    public ArrayList<Projeto> listaProjetos = new ArrayList<>();
     public ArrayList<Atividade> listaAtividades = new ArrayList<>();
     public ArrayList<User> userList = new ArrayList<>();
     public User current;
@@ -17,7 +17,7 @@ public class App {
         Integer todosatributosa = 0;
         String status = "Em processo de criacao";
         Dados dados1 = new Dados(14, "projeto1", "14/08/1999", "15/10/2020", "concluido");
-        this.listaProjetos.add(new Project(dados1, 1, 1.200, "15/10/2022", userList.get(0)));
+        this.listaProjetos.add(new Projeto(dados1, 1, 1.200, "15/10/2022", userList.get(0)));
         this.listaAtividades.add(new Atividade(dados1, current, userList.get(0)));
         int n = 0;
         while (n != -1) {
@@ -132,7 +132,7 @@ public class App {
             }
 
             Dados dados = new Dados(id, descrition, databegin, dataend, status);
-            Project proj = new Project(dados, bolsa, valor_bolsa, periodobolsa, current);
+            Projeto proj = new Projeto(dados, bolsa, valor_bolsa, periodobolsa, current);
             listaProjetos.add(proj);
             System.out.println("Projeto adicionado com sucesso.");
         }
@@ -196,7 +196,7 @@ public class App {
     public void alterarprojeto() {
         System.out.println("Digite o id da atividade que vc quer alterar:\n");
         int idprojeto = process();
-        Project projetoatual = procurarprojeto(idprojeto);
+        Projeto projetoatual = procurarprojeto(idprojeto);
         if (projetoatual != null) {
             System.out.println("Id: ");
             Integer id = process();
@@ -233,7 +233,7 @@ public class App {
     public void removerprojeto() {
         System.out.println("Digite o id da atividade que vc quer remover:");
         int idprojeto = process();
-        Project projetoatual = procurarprojeto(idprojeto);
+        Projeto projetoatual = procurarprojeto(idprojeto);
         if(projetoatual != null){
             this.listaProjetos.remove(projetoatual);
             System.out.println("Projeto removido com sucesso.");
@@ -250,7 +250,7 @@ public class App {
     public void consultarprojeto() {
         System.out.println("Digite o id do projeto que vc quer consultar:\n");
         int procura = process();
-        Project projeto = procurarprojeto(procura);
+        Projeto projeto = procurarprojeto(procura);
         if(projeto != null){
                 projeto.relatorio();
             }
@@ -258,7 +258,7 @@ public class App {
     public void pagar() {
         System.out.println("Digite o id do projeto que vc quer pagar:\n");
         int procura = process();
-        Project projeto = procurarprojeto(procura);
+        Projeto projeto = procurarprojeto(procura);
         if(projeto != null){
             System.out.printf("Pagamento em andamento do projeto %d\n", projeto.dados.getId());
             double salario_bolsa = projeto.getValor_bolsa();
@@ -275,7 +275,7 @@ public class App {
         }
     }
     public void relatorio() {
-        for (Project projeto : this.listaProjetos) {
+        for (Projeto projeto : this.listaProjetos) {
             System.out.println("Mostrando relatorio...");
             System.out.printf("status: %s\n", projeto.dados.getStatus());
             projeto.relatorio();
@@ -286,7 +286,7 @@ public class App {
         listaaluno();
         System.out.println("vc quer adicionar.\nDigite o id do projeto:");
         int id_p = process();
-        Project procurar = procurarprojeto(id_p);
+        Projeto procurar = procurarprojeto(id_p);
         if(procurar != null){
                 System.out.println("Digite o e-mail do aluno:");
                 String p_email = s.next();
@@ -311,7 +311,7 @@ public class App {
         int i = 0;
         System.out.println("vc quer adicionar.\nDigite o id do projeto:");
         int id_p = process();
-        Project procurar = procurarprojeto(id_p);
+        Projeto procurar = procurarprojeto(id_p);
         if(procurar != null){
             System.out.println("Digite o id da atividade:");
             int id_a = process();
@@ -365,7 +365,7 @@ public class App {
         for (User usuario : userList) {
             if (usuario instanceof Aluno) {
                 if (usuario.pessoa.name.equals(user)) {
-                    for(Project projeto: listaProjetos){
+                    for(Projeto projeto: listaProjetos){
                         if(projeto.find_user(user)){
                             System.out.print("o usuario pertence a um projeto.\nQual atividade vai ser feito o intercambio?\n");
                             int id = process();
@@ -408,9 +408,9 @@ public class App {
         System.out.println("Id incorreto ou inexistente.");
         return null;
     }
-    public Project procurarprojeto(int id){
+    public Projeto procurarprojeto(int id){
         System.out.println("procurando...");
-        for (Project projeto : this.listaProjetos) {
+        for (Projeto projeto : this.listaProjetos) {
             if (projeto.dados.getId().equals(id)) {
                 return projeto;
             }

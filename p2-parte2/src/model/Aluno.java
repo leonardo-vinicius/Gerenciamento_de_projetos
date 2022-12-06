@@ -1,8 +1,8 @@
 package model;
-import view.Payments;
+import view.Employee;
 import java.util.*;
 
-public class Aluno extends User implements Payments {
+public class Aluno extends User implements Employee {
     public Pessoa pessoa;
     public Integer matricula;
     public Aluno(Pessoa pessoa, Integer matricula) {
@@ -13,25 +13,19 @@ public class Aluno extends User implements Payments {
     public static class AlunoBuilder {
         private Pessoa pessoa;
         private int matricula;
-        public AlunoBuilder() {
-
-        }
+        public AlunoBuilder() {}
         public AlunoBuilder pessoa(Pessoa pessoa) {
             this.pessoa = pessoa;
             return this;
         }
-
         public AlunoBuilder matricula(Integer matricula) {
             this.matricula = matricula;
             return this;
         }
-
         public Aluno CreateAluno() {
             return new Aluno(pessoa, matricula);
         }
-
     }
-
     public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
@@ -41,7 +35,6 @@ public class Aluno extends User implements Payments {
             System.out.println("Cargo: aluno");
             return "numero de matrícula: " + this.matricula;
         }
-
         @Override
         public void recebe_salario(double dinheiro) {
             System.out.printf("Salario caiu na conta. R$:%.4f\n", dinheiro);
@@ -59,4 +52,3 @@ public class Aluno extends User implements Payments {
             setMatricula(v);
         }
 }
-
