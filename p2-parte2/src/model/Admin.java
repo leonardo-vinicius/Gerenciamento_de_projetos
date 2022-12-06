@@ -6,7 +6,6 @@ public class Admin extends User implements Employee {
     public String cargo;
     public Admin(Pessoa pessoa, String cargo) {
             super(pessoa);
-            //super(salario, name, email, password);
             this.pessoa = pessoa;
             this.cargo = cargo;
         }
@@ -14,9 +13,7 @@ public class Admin extends User implements Employee {
     public static class AdminBuilder {
         private Pessoa pessoa;
         private String cargo;
-        public AdminBuilder() {
-
-        }
+        public AdminBuilder() {}
         public AdminBuilder pessoa(Pessoa pessoa){
             this.pessoa = pessoa;
             return this;
