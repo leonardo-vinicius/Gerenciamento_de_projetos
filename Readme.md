@@ -7,6 +7,7 @@
       <li> Dependency Injection </li>
       <li> Introduce Parameter Object </li>
       <li> Builder </li>
+      <li> SOLID(Single Responsibility Principle) </li>
   </i>
 </ul> </div>
 
