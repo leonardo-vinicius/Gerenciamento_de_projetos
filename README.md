@@ -1,5 +1,4 @@
-# p2-parte2
-Projeto de programação orientada a objetos em Java sobre gerenciamento de projetos
+# Projeto de programação orientada a objetos em Java sobre gerenciamento de projetos
 caminho para executar o arquivo:
 <p>
 <h4>p2-parte2/p2-parte2/src/app/Main.java</h4>
